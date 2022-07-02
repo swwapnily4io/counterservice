@@ -57,5 +57,6 @@ You can even test the APIs from the above link.
 # Testing the application API
 You can use Postman for testing the APIs. Attaching below the postman project.
 
+[CounterService.postman_collection.json.zip](https://github.com/swwapnily4io/counterservice/files/9033087/CounterService.postman_collection.json.zip)
 
 
