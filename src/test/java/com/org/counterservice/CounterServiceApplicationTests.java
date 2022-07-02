@@ -1,4 +1,4 @@
-package com.org.java.counterservice;
+package com.org.counterservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

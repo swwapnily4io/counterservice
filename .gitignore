@@ -1,0 +1,8 @@
+
+*.class
+target/classes/application.properties
+target/classes/META-INF/maven/com.org.java/counterservice/pom.properties
+target/classes/META-INF/maven/com.org.java/counterservice/pom.xml
+target/classes/schema.sql
+mvnw
+mvnw.cmd

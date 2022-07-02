@@ -1,5 +1,7 @@
 package com.org.counterservice.api;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.slf4j.Logger;
@@ -46,6 +48,23 @@ public class CounterService {
 			logger.debug("Output - {}", counter.toString());
 		} catch (Exception e) {
 			logger.info("Exception while fetching the details of counter with countrId - {}", counterId, e);
+			ApiResponse response = new ApiResponse(ResponseCodes.RECORD_NOT_FOUND_MSG, ResponseCodes.RECORD_NOT_FOUND,
+					e.getMessage());
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(counter);
+	}
+	
+	@Description("This method will return all the counter defined")
+	@GetMapping(path="/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> getAllCounterDetails() {
+		logger.info("Fetching all the counter");
+		List<Counter> counter = null;
+		try {
+			counter = service.getAllCounters();
+			logger.debug("Output - {}", counter.toString());
+		} catch (Exception e) {
+			logger.info("Exception while fetching the counters", e);
 			ApiResponse response = new ApiResponse(ResponseCodes.RECORD_NOT_FOUND_MSG, ResponseCodes.RECORD_NOT_FOUND,
 					e.getMessage());
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
