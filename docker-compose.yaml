@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   counterservice:
-    image: swwapnilyadav/counterservice:0.0.1-SNAPSHOT
+    image: swwapnilyadav/counterservice:0.0.3-SNAPSHOT
     mem_limit: 700m
     ports:
       - "5000:5000"

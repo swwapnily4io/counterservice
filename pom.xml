@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.org.java</groupId>
 	<artifactId>counterservice</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<name>CounterService</name>
 	<description>Test. Counter service</description>
 	<properties>
