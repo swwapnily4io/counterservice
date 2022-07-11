@@ -50,7 +50,7 @@ public class CounterService {
 			logger.info("Exception while fetching the details of counter with countrId - {}", counterId, e);
 			ApiResponse response = new ApiResponse(ResponseCodes.RECORD_NOT_FOUND_MSG, ResponseCodes.RECORD_NOT_FOUND,
 					e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(counter);
 	}
@@ -67,14 +67,14 @@ public class CounterService {
 			logger.info("Exception while fetching the counters", e);
 			ApiResponse response = new ApiResponse(ResponseCodes.RECORD_NOT_FOUND_MSG, ResponseCodes.RECORD_NOT_FOUND,
 					e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(counter);
 	}
 
 	@ApiParam(name = "counterView", required = true, value = "counterView")
 	@Description("This method will create the counter")
-	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> createCounter(@Valid @RequestBody(required = true) CounterView counterView) {
 		Counter count = new Counter();
 		ApiResponse response = null;
@@ -86,7 +86,7 @@ public class CounterService {
 		} catch (Exception e) {
 			logger.info("Exception while creating the counter - {}", counterView, e);
 			response = new ApiResponse(ResponseCodes.REQUEST_FAILED_MSG, ResponseCodes.REQUEST_FAILED, e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 		response = new ApiResponse(ResponseCodes.REQUEST_SUCCESS_MSG, ResponseCodes.REQUEST_SUCCESS, "Success");
 		response.setOutPutObject(count);
@@ -95,7 +95,7 @@ public class CounterService {
 
 	@ApiParam(name = "counterView", required = true, value = "counterView")
 	@Description("This method will increment the counter")
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> incrementCounter(@Valid @RequestBody(required = true) CounterView counterView) {
 		Counter count = new Counter();
 		ApiResponse response = null;
@@ -108,7 +108,7 @@ public class CounterService {
 		} catch (Exception e) {
 			logger.info("Exception while incrementing the counter - {}", counterView, e);
 			response = new ApiResponse(ResponseCodes.REQUEST_FAILED_MSG, ResponseCodes.REQUEST_FAILED, e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 		response = new ApiResponse(ResponseCodes.REQUEST_SUCCESS_MSG, ResponseCodes.REQUEST_SUCCESS, "Success");
 		response.setOutPutObject(count);
@@ -126,7 +126,7 @@ public class CounterService {
 			logger.info("Exception while deleting the counter with counterId - {}", counterId, e);
 			ApiResponse response = new ApiResponse(ResponseCodes.RECORD_NOT_FOUND_MSG, ResponseCodes.RECORD_NOT_FOUND,
 					e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
 		}
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
